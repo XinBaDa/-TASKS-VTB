@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StartPage</title>
+</head>
+<body>
+<h1> Хранилище "Key-Value" </h1>
+<h3>Получить все данные хранилища WEB</h3>
+http://{HOSTNAME:PORT}/all
+<h3>Получить все данные хранилища CURL</h3>
+curl -i -X GET http://{HOSTNAME:PORT}/all
+<h3>Получить данные хранилища по ключу WEB</h3>
+http://{HOSTNAME:PORT}/read?key=test
+<h3>Получить данные хранилища по ключу CURL</h3>
+curl -i -GET http://{HOSTNAME:PORT}/read?key=test
+<h3>Добавить данные в хранилище CURL</h3>
+curl -i -H "Content-Type: application/json" -X POST -d '{"key": "value"}' http://{HOSTNAME:PORT}/write
+</body>
+</html>

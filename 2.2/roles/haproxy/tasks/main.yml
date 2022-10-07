@@ -1,0 +1,27 @@
+---
+- name: install haproxy
+  yum:
+    name: haproxy
+    state: present
+
+- name: insert cfg
+  template:
+    src: templates/haproxy_cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+
+- name: allow http
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+
+- name: reload service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+
+- name: start haproxy
+  service:
+    name: haproxy
+    state: started
+    enabled: yes

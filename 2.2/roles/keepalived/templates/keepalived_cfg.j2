@@ -1,0 +1,26 @@
+vrrp_script haproxy {
+  script "/usr/sbin/pidof haproxy"
+  interval 1
+  weight 10
+  user root
+}
+
+vrrp_instance TASK {
+  interface {{ keepalived_interface }}
+  state {{ keepalived_state }}
+  virtual_router_id {{ keepalived_rid  }}
+  priority {{ keepalived_priority  }}
+
+  authentication {
+    auth_type PASS
+    auth_pass {{ keepalived_auth_pass }}
+  }
+
+  virtual_ipaddress {
+    {{ keepalived_vip }}
+  }
+
+  track_script {
+    haproxy
+  }
+}

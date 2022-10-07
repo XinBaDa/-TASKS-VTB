@@ -1,0 +1,4 @@
+---
+keepalived_interface: enp0s3
+keepalived_state: BACKUP
+keepalived_priority: 10

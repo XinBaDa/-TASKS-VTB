@@ -1,0 +1,8 @@
+[webservers]
+web1 ansible_host=192.168.1.101 web_name=WEB_SRV1
+web2 ansible_host=192.168.1.102 web_name=WEB_SRB2
+
+[loadbalancers]
+lb1 ansible_host=192.168.1.111 keepalived_state=MASTER keepalived_priority=100
+lb2 ansible_host=192.168.1.112 keepalived_state=BACKUP keepalived_priority=95
+

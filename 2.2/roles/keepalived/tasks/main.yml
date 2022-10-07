@@ -1,0 +1,34 @@
+---
+- name: install keepalived
+  yum:
+    name: keepalived
+    state: present
+
+- name: insert cfg
+  template:
+    src: templates/keepalived_cfg.j2
+    dest: /etc/keepalived/keepalived.conf
+
+- name: allow vrrp
+  firewalld:
+    rich_rule: rule protocol value="vrrp" accept
+    permanent: true
+    state: enabled
+
+- name: reload service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+
+- name: ensure nonlocal bind kernel parameter is set
+  sysctl:
+    name: net.ipv4.ip_nonlocal_bind
+    value: 1
+    state: present
+    ignoreerrors: yes
+
+- name: start keepalived
+  service:
+    name: keepalived
+    state: started
+    enabled: yes

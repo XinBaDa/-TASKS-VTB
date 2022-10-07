@@ -1,0 +1,5 @@
+---
+keepalived_rid: 100
+keepalived_auth_pass: qwe12345
+keepalived_vip: 192.168.1.115/24
+
